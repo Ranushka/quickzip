@@ -66,20 +66,8 @@ public class MakeZipFileStep extends AbstractQuickZipStep {
       final JComponent toolbarComponent = ActionManager.getInstance().createActionToolbar(ActionPlaces.UNKNOWN,
             selectionTreePanel.getTreeActions(), true).getComponent();
 
-      final JPanel fragmentPanel = new JPanel();
-      fragmentPanel.add(toolbarComponent, BorderLayout.NORTH);
-      fragmentPanel.add(selectionTreePanel, BorderLayout.CENTER);
-
-      myRightPanel.add(fragmentPanel, BorderLayout.CENTER);
-
-      // Second component is the file chooser
-      final JPanel zipFilePanel = new JPanel(new BorderLayout());
-
       final String defaultZipFileLoc = getDefaultZipFileLocation();
-
       zipFileNameField.setText(defaultZipFileLoc);
-      zipFilePanel.setBackground(Color.white);
-      zipFilePanel.add(zipFileNameField, BorderLayout.CENTER);
 
       final JButton zipFileSaveButton = new JButton(QuickZipBundle.message("select-zip-file.quick-zip.action.name"), QUICK_ZIP_ICON);
       zipFileSaveButton.addActionListener(new ActionListener() {
@@ -94,7 +82,17 @@ public class MakeZipFileStep extends AbstractQuickZipStep {
          }
       });
 
+      final JPanel fragmentPanel = new JPanel();
+      fragmentPanel.add(toolbarComponent, BorderLayout.NORTH);
+      fragmentPanel.add(selectionTreePanel, BorderLayout.CENTER);
+
+      // Second component is file chooser related
+      final JPanel zipFilePanel = new JPanel(new BorderLayout());
+      zipFilePanel.setBackground(Color.white);
+      zipFilePanel.add(zipFileNameField, BorderLayout.CENTER);
       zipFilePanel.add(zipFileSaveButton, BorderLayout.EAST);
+
+      myRightPanel.add(fragmentPanel, BorderLayout.CENTER);
       myRightPanel.add(zipFilePanel, BorderLayout.SOUTH);
 
       final Dimension d = myWholePanel.getPreferredSize();
@@ -102,7 +100,6 @@ public class MakeZipFileStep extends AbstractQuickZipStep {
       d.height = Math.max(d.height, 580);
       final int rightPanelWidth = (int) Math.max(400, d.width * (1 - proportion - 0.05));
       myRightPanel.setPreferredSize(new Dimension(rightPanelWidth, d.height - 100));
-
    }
 
    @Override

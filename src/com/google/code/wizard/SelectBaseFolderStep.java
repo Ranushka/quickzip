@@ -1,8 +1,8 @@
 package com.google.code.wizard;
 
 import com.google.code.model.ZipFragmentModel;
-import com.google.code.util.QuickZipBundle;
 import com.google.code.tree.BaseFolderSelectionTree;
+import com.google.code.util.QuickZipBundle;
 import com.intellij.openapi.actionSystem.ActionManager;
 import com.intellij.openapi.actionSystem.ActionPlaces;
 import com.intellij.openapi.project.Project;
@@ -55,8 +55,8 @@ public class SelectBaseFolderStep extends AbstractQuickZipStep {
 
          final JComponent toolbarComponent = ActionManager.getInstance().createActionToolbar(ActionPlaces.UNKNOWN,
                selectionTreePanel.getTreeActions(), true).getComponent();
-         myRightPanel.add(toolbarComponent, BorderLayout.NORTH);
 
+         fragmentPanel.add(toolbarComponent, BorderLayout.NORTH);
          fragmentPanel.add(selectionTreePanel, BorderLayout.CENTER);
 
          myRightPanel.add(fragmentPanel, BorderLayout.CENTER);

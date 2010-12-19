@@ -1,8 +1,8 @@
 package com.google.code.wizard;
 
-import com.google.code.util.QuickZipBundle;
 import com.google.code.model.ZipFragmentModel;
 import com.google.code.tree.FileToZipSelectionTree;
+import com.google.code.util.QuickZipBundle;
 import com.intellij.ide.wizard.CommitStepException;
 import com.intellij.openapi.actionSystem.ActionManager;
 import com.intellij.openapi.actionSystem.ActionPlaces;
@@ -24,7 +24,7 @@ import java.util.List;
 public class SelectFilesStep extends AbstractQuickZipStep {
 
    private final JPanel myRightPanel = new JPanel(new BorderLayout());
-   private final JTextField myNameTextField = new JTextField(40);
+   private final JTextField myNameTextField = new JTextField(30);
 
    public SelectFilesStep(final Project project, final List<ZipFragmentModel> selectedFragments, final QuickZipWizard parentWizard) {
       super(project, selectedFragments, parentWizard);
@@ -93,17 +93,13 @@ public class SelectFilesStep extends AbstractQuickZipStep {
 
       if (fragmentModel != null) {
          // Add the new component on the right
-         final JPanel fragmentPanel = new JPanel();
 
          final FileToZipSelectionTree selectionTreePanel = new FileToZipSelectionTree(myProject, fragmentModel);
 
          final JComponent toolbarComponent = ActionManager.getInstance().createActionToolbar(ActionPlaces.UNKNOWN,
                selectionTreePanel.getTreeActions(), true).getComponent();
-         myRightPanel.add(toolbarComponent, BorderLayout.NORTH);
 
-         final JPanel namePanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 2, 2));
-         final JLabel nameLabel = new JLabel(QuickZipBundle.message("label.fragment.name"), SwingConstants.LEFT);
-         namePanel.add(nameLabel);
+         final JLabel nameLabel = new JLabel(QuickZipBundle.message("label.fragment.name"));
 
          final KeyListener[] currentKeyListeners = myNameTextField.getKeyListeners();
          for (final KeyListener loopListener : currentKeyListeners) {
@@ -120,13 +116,20 @@ public class SelectFilesStep extends AbstractQuickZipStep {
             }
          });
          nameLabel.setLabelFor(myNameTextField);
-         namePanel.add(myNameTextField);
 
-         fragmentPanel.add(namePanel, BorderLayout.NORTH);
-         fragmentPanel.add(selectionTreePanel, BorderLayout.CENTER);
+         final JPanel fragmentPanel = new JPanel(new BorderLayout());
+         final JPanel namePanel = new JPanel(new BorderLayout());
+         namePanel.add(nameLabel, BorderLayout.WEST);
+         namePanel.add(myNameTextField, BorderLayout.EAST);
+
+         final JPanel bodyPanel = new JPanel(new BorderLayout());
+         bodyPanel.add(namePanel, BorderLayout.NORTH);
+         bodyPanel.add(selectionTreePanel, BorderLayout.CENTER);
+
+         fragmentPanel.add(toolbarComponent, BorderLayout.NORTH);
+         fragmentPanel.add(bodyPanel, BorderLayout.CENTER);
 
          myRightPanel.add(fragmentPanel, BorderLayout.CENTER);
-
       }
       setupDialogBounds();
    }
