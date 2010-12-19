@@ -180,36 +180,15 @@ public abstract class AbstractFileSelectionTree<T> extends JPanel {
             if (myProject.isDisposed()) {
                return;
             }
+
             TreeUtil.expandAll(myTree);
 
             int scrollRow = 0;
-
             if (getSelectedItemsInModel().size() > 0) {
                final DefaultMutableTreeNode root = (DefaultMutableTreeNode) model.getRoot();
 
-               {
-                  // Collapse unselected nodes
-                  final Enumeration enumeration = root.depthFirstEnumeration();
-                  while (enumeration.hasMoreElements()) {
-                     final DefaultMutableTreeNode node = (DefaultMutableTreeNode) enumeration.nextElement();
-                     final CheckBoxSelectionStateEnum state = getNodeStatus(node);
-                     if (node != root && state == CheckBoxSelectionStateEnum.CLEAR) {
-                        myTree.collapsePath(new TreePath(node.getPath()));
-                     }
-                  }
-               }
-               {
-                  // Scroll to item which is selected
-                  final Enumeration enumeration = root.depthFirstEnumeration();
-                  while (enumeration.hasMoreElements()) {
-                     final DefaultMutableTreeNode node = (DefaultMutableTreeNode) enumeration.nextElement();
-                     final CheckBoxSelectionStateEnum state = getNodeStatus(node);
-                     if (state == CheckBoxSelectionStateEnum.FULL && node.isLeaf()) {
-                        scrollRow = myTree.getRowForPath(new TreePath(node.getPath()));
-                        break;
-                     }
-                  }
-               }
+               handleUnselectedNodes(root);
+               scrollRow = getScrollRowIndex(root);
             }
 
             myTree.setSelectionRow(scrollRow);
@@ -221,6 +200,31 @@ public abstract class AbstractFileSelectionTree<T> extends JPanel {
       } else {
          SwingUtilities.invokeLater(runnable);
       }
+   }
+
+   protected void handleUnselectedNodes(final DefaultMutableTreeNode pRoot) {
+      // Collapse unselected nodes
+      final Enumeration enumeration = pRoot.depthFirstEnumeration();
+      while (enumeration.hasMoreElements()) {
+         final DefaultMutableTreeNode node = (DefaultMutableTreeNode) enumeration.nextElement();
+         final CheckBoxSelectionStateEnum state = getNodeStatus(node);
+         if (node != pRoot && state == CheckBoxSelectionStateEnum.CLEAR) {
+            myTree.collapsePath(new TreePath(node.getPath()));
+         }
+      }
+   }
+
+   private int getScrollRowIndex(final DefaultMutableTreeNode pRoot) {
+      // Scroll to item which is selected
+      final Enumeration enumeration = pRoot.depthFirstEnumeration();
+      while (enumeration.hasMoreElements()) {
+         final DefaultMutableTreeNode node = (DefaultMutableTreeNode) enumeration.nextElement();
+         final CheckBoxSelectionStateEnum state = getNodeStatus(node);
+         if (state == CheckBoxSelectionStateEnum.FULL && node.isLeaf()) {
+            return myTree.getRowForPath(new TreePath(node.getPath()));
+         }
+      }
+      return 0;
    }
 
    protected abstract Collection<String> getSelectedItemsInModel();
