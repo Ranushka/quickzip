@@ -145,7 +145,6 @@ public class MakeZipFileStep extends AbstractQuickZipStep {
 
                            if (loopFile.isFile()) {
                               final String zipEntryPath = loopFileName.substring(prefixLengthToSkip);
-                              System.out.println("MakeZipFileStep.run(): Zipping " + zipEntryPath + "(actual=" + loopFileName + ")");
 
                               final byte[] buf = new byte[1024];
                               outputStream.putNextEntry(new ZipEntry(zipEntryPath));
