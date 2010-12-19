@@ -1,0 +1,28 @@
+<component name="LanguageInjectionConfiguration">
+    <ATTRIBUTES>
+        <entry>
+            <XmlAttributeInjection>
+                <setting name="LANGUAGE" value="JavaScript"/>
+                <setting name="PREFIX" value=""/>
+                <setting name="SUFFIX" value=""/>
+                <setting name="TAGNAME" value=""/>
+                <setting name="TAGNAMESPACE" value="http://struts.apache.org/tags-html"/>
+                <setting name="ATT_NAME" value="on.*"/>
+                <setting name="ATT_NAMESPACE" value=""/>
+            </XmlAttributeInjection>
+        </entry>
+        <entry>
+            <XmlAttributeInjection>
+                <setting name="LANGUAGE" value="JavaScript"/>
+                <setting name="PREFIX" value=""/>
+                <setting name="SUFFIX" value=""/>
+                <setting name="TAGNAME" value=""/>
+                <setting name="TAGNAMESPACE" value="http://struts.apache.org/tags-html-el"/>
+                <setting name="ATT_NAME" value="on.*"/>
+                <setting name="ATT_NAMESPACE" value=""/>
+                <setting name="VALUE_PATTERN" value=""/>
+                <setting name="XPATH_CONDITION" value=""/>
+            </XmlAttributeInjection>
+        </entry>
+    </ATTRIBUTES>
+</component>
