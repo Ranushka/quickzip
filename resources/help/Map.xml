@@ -1,0 +1,8 @@
+<map version="1.0">
+    <mapID target="QuickZip.Overview" url="QuickZip/Overview.html"></mapID>
+    <mapID target="QuickZip.SelectFiles" url="QuickZip/SelectFiles.html"></mapID>
+    <mapID target="QuickZip.SelectParentFolder" url="QuickZip/SelectParentFolder.html"></mapID>
+    <mapID target="QuickZip.Feedback" url="QuickZip/Feedback.html"></mapID>
+    <mapID target="icon" url="icons/zip-16.png"></mapID>
+    <mapID target="none" url="none.png"></mapID>
+</map>

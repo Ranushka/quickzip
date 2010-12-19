@@ -1,0 +1,36 @@
+<idea-plugin version="2" url="http://code.google.com/QuickZip">
+    <name>QuickZip</name>
+    <description><![CDATA[
+    This plugin adds an extra action to the popup menu.
+    It allows for creating a zip file containing specific files from the project.
+    The plugin allows the user to select a common ancestor to create a meaningful folder structure inside the zip file.
+  ]]></description>
+    <version>0.1.0</version>
+    <vendor email="shams.mahmood@gmail.com">Shams Mahmood Imam</vendor>
+    <idea-version since-build="8000"/>
+
+    <change-notes><![CDATA[Initial release.]]></change-notes>
+
+    <application-components>
+        <!-- Add your application components here -->
+    </application-components>
+
+    <project-components>
+        <!-- Add your project components here -->
+    </project-components>
+
+    <actions>
+        <action id="QuickZip.ZipAction" class="com.google.code.action.ZipAction" text="_Quick Zip"
+                description="An action to quickly zip files" icon="/help/icons/zip-16.png">
+            <add-to-group group-id="FileMenu" anchor="after" relative-to-action="ExportImportGroup"/>
+            <add-to-group group-id="ProjectViewPopupMenu" anchor="after" relative-to-action="ExternalToolsGroup"/>
+            <add-to-group group-id="NavbarPopupMenu" anchor="after" relative-to-action="ExternalToolsGroup"/>
+
+            <keyboard-shortcut keymap="$default" first-keystroke="ctrl alt Q"/>
+        </action>
+    </actions>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <!-- Add your extensions here -->
+    </extensions>
+</idea-plugin>
