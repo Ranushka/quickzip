@@ -74,6 +74,11 @@ public class BaseFolderSelectionTree extends AbstractFileSelectionTree<ZipFragme
    }
 
    @Override
+   protected void handleUnselectedNodes(final DefaultMutableTreeNode pRoot) {
+      // DO nothing
+   }
+
+   @Override
    protected Collection<String> getSelectedItemsInModel() {
       return Arrays.asList(myModel.getParentFolder());
    }
