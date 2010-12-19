@@ -1,4 +1,4 @@
-<idea-plugin version="2" url="http://code.google.com/QuickZip">
+<idea-plugin version="2" url="http://code.google.com/p/quickzip/">
     <name>QuickZip</name>
     <description><![CDATA[
     This plugin adds an extra action to the popup menu.
