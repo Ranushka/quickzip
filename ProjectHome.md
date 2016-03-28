@@ -1,0 +1,1 @@
+QuickZip is a plugin that allows quickly zipping selected files from an IntelliJ project. It is inspired from the ZipChanges plugin that allows zipping files from a Changelist.
